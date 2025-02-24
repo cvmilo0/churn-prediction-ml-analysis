@@ -93,3 +93,9 @@ plotly>=5.3.0
 seaborn>=0.11.0
 matplotlib>=3.4.0
 ```
+## Author ✨
+Camilo Cortés Gómez
+
+## Contact 📫
+- LinkedIn: [Camilo Cortés Gómez](https://www.linkedin.com/in/camilo-cortes-gomez/)
+- Email: [cvmilocortes@gmail.com](mailto:cvmilocortes@gmail.com)
