@@ -51,3 +51,6 @@ ENV/
 dist/
 build/
 *.egg-info/ 
+
+# Python version - uv project
+*.python-version
