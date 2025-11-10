@@ -30,8 +30,8 @@ app.add_middleware(SlowAPIMiddleware)
 
 
 # Artifacts loading
-model = joblib.load('./ml_models/rf.pkl')
-feature_order = joblib.load('./ml_models/feature_order.pkl')
+model = joblib.load('./notebooks/ml/rf.pkl')
+feature_order = joblib.load('./notebooks/ml/feature_order.pkl')
 
 
 @app.get("/status")
