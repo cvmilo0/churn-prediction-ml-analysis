@@ -1,36 +1,37 @@
 # ML Customer Churn Prediction
 
-## 🎯 Project Objective
-Development of a predictive analytics solution to identify high-risk churn customers in a telecommunications company, leveraging Machine Learning
+## Project Objective
+End-to-end machine learning solution for predicting customer churn. The project includes data analysis, model development, and deployment of a production-ready API on AWS Lambda.
 
-## 🔍 Business Context
+## Business Context
 - Dataset comprising 5,000 customers with 20 different variables
 - Variables include demographic data, usage patterns, and service metrics
-- Target variable: "churn" (customer abandonment)
-- Class imbalance: 14.14% of customers have churned
+- Target variable: "churn"
 
-## 💻 Technologies Used
-- **Programming Language:** Python3.11
-- **Main Libraries:**
+## Tech stack
+- **Programming Language:** Python 3.11
+- **ML Libraries:**
   - Pandas & NumPy: Data manipulation and analysis
   - Scikit-learn: Predictive modeling and evaluation
-  - SMOTE: Class imbalance handling
-  - Seaborn & Matplotlib: Data visualization
-  - Optuna: Hyperparameter optimization
+  - Imbalanced-learn: Class imbalance handling (SMOTE)
+  - Joblib: Model serialization
+- **API & Deployment:**
+  - FastAPI: Web framework for building the API
+  - uv: Fast Python package manager
+  - Docker: Containerization
+  - AWS Lambda: Serverless deployment
 
-## 🛠 Technical Skills Demonstrated
+## Technical Skills Demonstrated
 
 ### 1. Data Preprocessing
-- Outlier handling through winsorization techniques
+- Outlier handling (winsorization)
 - Categorical variable treatment
 - Class balancing using SMOTE
-- Advanced feature engineering
+- Feature engineering
 
 ### 2. Exploratory Analysis
-- Univariate distribution analysis
 - Correlation studies
-- Advanced data visualization
-- Identification of key customer behavior patterns
+- Data visualization
 
 ### 3. Predictive Modeling
 - Random Forest Classifier implementation
@@ -38,38 +39,130 @@ Development of a predictive analytics solution to identify high-risk churn custo
 - Stratified cross-validation
 - Robust model evaluation
 
-### 4. Performance Metrics
+### 4. Performance Metrics (Original Model)
 - ROC-AUC: 0.888
 - Precision in majority class: 94%
 - Churn detection recall: 58%
 - Global F1-Score: 88%
 
-## 📊 Key Findings
+---
 
-### Most Influential Variables
-1. Total day minutes (13.9%)
-2. Day charges (11.8%)
-3. Average call duration (6.0%)
-4. Average cost per minute (4.9%)
-5. High customer service usage (4.2%)
+## API Deployment
 
-### Business Insights
-- Daytime usage patterns are the strongest predictors of churn
-- Multiple customer service calls are a critical indicator
-- Customers are sensitive to average cost per minute
-- International usage, while minor, is a relevant indicator
+### Live API Endpoint
 
-## 🎯 Business Impact
-- Proactive identification of at-risk customers with 88.8% accuracy
-- 77.6% more effective than random selection
-- Strategic prioritization of top 500 high-risk customers
-- Actionable retention recommendations
+The churn prediction model is deployed as a REST API on AWS Lambda:
 
+**Base URL:** `https://tafuylh2rdjlgrat4e35vdjkpi0owtqo.lambda-url.eu-west-3.on.aws/`
 
-## 🔄 Development Process
-1. Detailed exploratory analysis
-2. Extensive feature engineering
-3. Random Forest modeling
-4. Hyperparameter optimization
-5. Model evaluation and tuning
-6. Business insight generation
+### API Endpoints
+
+#### 1. Health Check
+```http
+GET /status
+```
+
+**Response:**
+```json
+{
+  "status": "Churn Prediction API is running"
+}
+```
+
+#### 2. Churn Prediction
+```http
+POST /predict
+Content-Type: application/json
+```
+
+**Request Body:**
+```json
+{
+  "total_day_minutes": 265.1,
+  "total_day_charge": 45.07,
+  "number_customer_service_calls": 1,
+  "avg_call_duration": 3.5,
+  "number_vmail_messages": 25,
+  "total_intl_calls": 3,
+  "avg_cost_per_minute": 0.17,
+  "total_eve_minutes": 197.4,
+  "total_eve_charge": 16.78,
+  "phone_number": 4155551234
+}
+```
+
+**Response:**
+```json
+{
+  "label": 0,
+  "churn_probability": 0.22613065326633167
+}
+```
+
+**Response Fields:**
+- `label`: Binary prediction (0 = no churn, 1 = churn)
+- `churn_probability`: Probability of churn (0.0 to 1.0)
+
+### Rate Limiting
+- **Limit:** 5 requests per day per IP
+
+### API Architecture
+- **Platform:** AWS Lambda (Serverless)
+- **Runtime:** Python 3.11
+- **Framework:** FastAPI with Mangum adapter
+- **Container:** Docker-based deployment
+- **Endpoint Type:** Lambda Function URL
+
+---
+
+## Local Development
+
+### Setup
+
+1. **Clone the repository**
+```bash
+git clone <repository-url>
+cd churn_ml
+```
+
+2. **Install dependencies**
+```bash
+# Using uv (recommended)
+uv pip install -r requirements.txt
+
+# Or using pip
+pip install -r requirements.txt
+```
+
+3. **Run locally with Docker**
+```bash
+docker-compose up
+```
+
+The API will be available at `http://localhost:8000`
+
+### Project Structure
+```
+churn_ml/
+├── app/
+│   ├── main.py              # FastAPI application
+│   ├── models/
+│   │   └── schemas.py       # Pydantic models
+│   ├── utils.py             # Model loading utilities
+│   └── limiter.py           # Rate limiting configuration
+├── notebooks/
+│   ├── churn.ipynb          # Model training notebook
+│   └── ml/
+│       ├── pipeline_simple.pkl      # Trained model
+│       └── feature_order_simple.pkl # Feature order
+├── Dockerfile.prod          # Production Dockerfile (Lambda)
+├── Dockerfile.dev           # Development Dockerfile
+├── requirements.txt         # Development dependencies
+├── requirements-prod.txt    # Production dependencies
+└── README.md
+```
+---
+
+## Author
+
+Camilo Cortés Gómez
