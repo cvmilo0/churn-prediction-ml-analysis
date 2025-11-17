@@ -9,7 +9,7 @@ from slowapi.middleware import SlowAPIMiddleware
 from fastapi import Request
 import pandas as pd
 from .utils import load_pipeline, load_feature_order
-
+from mangum import Mangum
 app = FastAPI(
     title="Churn Prediction API",
     description="API for telecom customer churn prediction",
@@ -55,3 +55,10 @@ def predict(request: Request, customer: Customer):
         "label": int(y_pred),
         "churn_probability": float(y_prob),
     }
+
+# Handler for AWS Lambda
+handler = Mangum(
+    app,
+    lifespan="off",
+    api_gateway_base_path="/"
+)
