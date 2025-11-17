@@ -1,7 +1,7 @@
 # ML Customer Churn Prediction
 
 ## Project Objective
-End-to-end machine learning solution for predicting customer churn. The project includes data analysis, model development, and deployment of a production-ready API on AWS Lambda.
+End-to-end machine learning solution for predicting customer churn. The project includes data wrangling, model training, and deployment of a production-ready API on AWS Lambda.
 
 ## Business Context
 - Dataset comprising 5,000 customers with 20 different variables
@@ -21,7 +21,7 @@ End-to-end machine learning solution for predicting customer churn. The project 
   - Docker: Containerization
   - AWS Lambda: Serverless deployment
 
-## Technical Skills Demonstrated
+## Technical Skills
 
 ### 1. Data Preprocessing
 - Outlier handling (winsorization)
