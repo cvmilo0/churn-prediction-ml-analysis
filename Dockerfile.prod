@@ -1,0 +1,17 @@
+FROM public.ecr.aws/lambda/python:3.11
+
+# Copy production requirements
+COPY requirements-prod.txt ${LAMBDA_TASK_ROOT}/
+
+# Install production dependencies
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r ${LAMBDA_TASK_ROOT}/requirements-prod.txt
+
+# Copy application code
+COPY app/ ${LAMBDA_TASK_ROOT}/app/
+
+# Copy ML artifacts (models and feature order files)
+COPY notebooks/ml/ ${LAMBDA_TASK_ROOT}/notebooks/ml/
+
+# Set the Lambda handler
+CMD ["app.main.handler"]
