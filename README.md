@@ -128,7 +128,7 @@ cd churn_ml
 2. **Install dependencies**
 ```bash
 # Using uv (recommended)
-uv pip install -r requirements.txt
+uv sync
 
 # Or using pip
 pip install -r requirements.txt
