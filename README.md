@@ -121,7 +121,7 @@ Content-Type: application/json
 
 1. **Clone the repository**
 ```bash
-git clone <repository-url>
+git clone github.com/cvmilo0/churn-prediction-ml-analysis
 cd churn_ml
 ```
 
