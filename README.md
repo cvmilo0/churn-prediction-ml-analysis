@@ -1,7 +1,7 @@
-# Telecom Customer Churn Prediction: Predictive Analytics & Retention Strategy
+# ML Customer Churn Prediction
 
 ## 🎯 Project Objective
-Development of a predictive analytics solution to identify high-risk churn customers in a telecommunications company, leveraging advanced machine learning techniques - Traditional Churn problem
+Development of a predictive analytics solution to identify high-risk churn customers in a telecommunications company, leveraging Machine Learning
 
 ## 🔍 Business Context
 - Dataset comprising 5,000 customers with 20 different variables
@@ -10,7 +10,7 @@ Development of a predictive analytics solution to identify high-risk churn custo
 - Class imbalance: 14.14% of customers have churned
 
 ## 💻 Technologies Used
-- **Programming Language:** Python
+- **Programming Language:** Python3.11
 - **Main Libraries:**
   - Pandas & NumPy: Data manipulation and analysis
   - Scikit-learn: Predictive modeling and evaluation
@@ -65,11 +65,6 @@ Development of a predictive analytics solution to identify high-risk churn custo
 - Strategic prioritization of top 500 high-risk customers
 - Actionable retention recommendations
 
-## 📈 Areas for Improvement
-1. Exploration of additional balancing techniques
-2. Fine-tuning of class weights
-3. Development of new predictive variables
-4. Implementation of continuous monitoring
 
 ## 🔄 Development Process
 1. Detailed exploratory analysis
@@ -78,24 +73,3 @@ Development of a predictive analytics solution to identify high-risk churn custo
 4. Hyperparameter optimization
 5. Model evaluation and tuning
 6. Business insight generation
-
-## 📝 Requirements
-```python
-numpy>=1.21.0
-pandas>=1.3.0
-scikit-learn>=1.0.0
-xgboost>=1.5.0
-lightgbm>=3.3.0
-imbalanced-learn>=0.8.0
-shap>=0.40.0
-optuna>=2.10.0
-plotly>=5.3.0
-seaborn>=0.11.0
-matplotlib>=3.4.0
-```
-## Author ✨
-Camilo Cortés Gómez
-
-## Contact 📫
-- LinkedIn: [Camilo Cortés Gómez](https://www.linkedin.com/in/camilo-cortes-gomez/)
-- Email: [cvmilocortes@gmail.com](mailto:cvmilocortes@gmail.com)
